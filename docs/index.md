@@ -1,8 +1,15 @@
 # **Segmentation of the llms**
 
+After our last meeting, we found that we were all working hard on developing a suitable model for edge deployment using various state-of-the-art methods such as pruning, fine-tuning, quantizing, and distillation. However, the segmentation of LLMs was still an area that we had not explored.
+
+Furthermore, we discussed an existing method that could be incorporated into our research project for efficiently segmenting the LLM. The points I have expressed here are based on the research paper I have explored, but there may be other methods that outperform the proposed one.
+
+
+
 ## **Current Implementation of Neural Network**
 
 The current implementation of neural network are based on Dictionaries, List and Queue. Here for efficient training, inferencing and deployment we can make use of Computational graphs. 
+<br>
 
 
 ![Basic ANN](https://cdn-images-1.medium.com/max/1600/1*pbk9xtz7WbBwYPVATdl9Vw.png)
@@ -40,15 +47,15 @@ Frameworks like TensorFlow and PyTorch build computational graphs dynamically or
 
 The graph is defined once before execution (e.g., TensorFlow 1.x). Once the graph is constructed, it is executed as a whole.
 
-Pros: Allows for optimizations like memory reuse and graph-level optimizations.
-Cons: Less flexible, requires redefinition of the graph for dynamic changes.
+**Pros:** Allows for optimizations like memory reuse and graph-level optimizations. <br>
+**Cons:** Less flexible, requires redefinition of the graph for dynamic changes.
 
 #### **Dynamic Graphs (Define-by-Run):**
 
 The graph is constructed on-the-fly as operations are executed (e.g., PyTorch, TensorFlow 2.x).
 
-Pros: More flexible and intuitive, especially useful for tasks like recursive neural networks or variable-length sequences.
-Cons: Can have slightly higher overhead during execution due to graph construction.
+**Pros:** More flexible and intuitive, especially useful for tasks like recursive neural networks or variable-length sequences. <br>
+**Cons:** Can have slightly higher overhead during execution due to graph construction.
 vbnet
 
 ### **Example: Computational Graph for a Simple Function**
@@ -56,10 +63,10 @@ vbnet
 ![Functional representation of Computational Graphs](https://sslprod.oss-cn-shanghai.aliyuncs.com/stable/slides/computational_graph_backpropagation_jij68v/computational_graph_backpropagation_jij68v_1440-05.jpg)
 
 
-Suppose we have a simple function:  
+**Suppose we have a simple function: ** 
  - \[ z = (x + y) \cdot w \]
 
-Where:  
+**Where:**  
 - \( x \), \( y \), and \( w \) are input variables.  
 - \( + \) and \( \cdot \) are operations.
 
@@ -75,6 +82,55 @@ y ----+            *
 w -----------------+
 
 ``` 
+
+
+
+## **Convert LLMs into Computational Graphs**: <br>
+
+<!-- ## **Steps to Convert LLMs into Computational Graphs** <br> -->
+
+#### **Breakdown of LLM Components <br>**
+  - **Overview**: LLMs, such as GPT, are essentially stacks of transformer layers.
+  - **Each transformer layer contains operations like**:
+    - Linear projections (matrix multiplications)
+    - Multi-head self-attention (dot products, softmax, and weighted sums)
+    - Layer normalization
+    - Activation functions (e.g., GeLU, ReLU)
+    - Feedforward neural networks
+  - **Representation**: These operations can be represented as nodes in a computational graph.
+
+  ---
+
+#### Representing Forward Pass <br>
+  - **Process**: In the forward pass, the input tokens (word embeddings) are passed through a series of transformer layers.
+  - **Node Representation**:
+    - Each layer's operations can be converted into a node in the graph.
+    - The output of one node (operation) flows into the next.
+  - **Self-Attention Mechanism**:
+    - The self-attention mechanism itself is a subgraph.
+    - Each step (e.g., attention scores calculation, softmax normalization) is broken down into individual operations.
+  - **Graph Interaction**: The computational graph represents how each token interacts with others across layers.
+
+  ---
+
+#### **Backward Pass (Backpropagation)**
+  - **Automatic Differentiation**: The backward pass is handled by automatic differentiation.
+  - **Gradient Computation**:
+    - Once the computational graph is constructed, frameworks like TensorFlow or PyTorch can automatically compute gradients for each parameter with respect to the loss.
+    - This is done by traversing the graph in reverse.
+  - **Efficiency**: This allows for efficient training of the model, optimizing the parameters using gradient descent.
+
+  ---
+
+#### Example: LLM Layer (Single Transformer Layer)
+  - **Inputs**: Token embeddings
+  - **Operations**:
+    - Multi-head self-attention (with matrix multiplications, scaling, and softmax)
+    - Add & Norm
+    - Feedforward network (with activation function)
+    - Add & Norm
+  - **Outputs**: Transformed embeddings
+  - **Graph Representation**: This can be represented as a directed acyclic graph (DAG), with each of these operations represented as nodes and the data flow between them as edges.
 
 
 ## **Key Concepts in Computational Graphs**
@@ -99,10 +155,16 @@ w -----------------+
 - During the backward pass, the graph is used to calculate gradients of the loss function with respect to model parameters.
 - Automatic differentiation (reverse-mode differentiation) is applied by traversing the graph backward, allowing efficient gradient calculation for optimization algorithms like gradient descent.
 
-[Basic Implementation in Colab - On Mathematic Expressions](https://colab.research.google.com/github/datasith/ML-Notebooks-TensorFlow/blob/main/Intro_Computational_Graphs.ipynb#scrollTo=DxyJDoMOs1gu)
+
+## **Use Cases for LLM Segmentation**
+
+- **Distributed Training**: Essential for efficiently training very large LLMs (like GPT-3 or similar models) across multiple GPUs or nodes.
+- **Edge Deployment**: Allows parts of the model to be deployed on edge devices while keeping others centralized.
+- **Inference Pipelines**: Facilitates faster, parallelized processing for real-time applications by segmenting the LLM.
+
+**[Basic Implementation in Colab - On Mathematic Expressions](https://colab.research.google.com/github/datasith/ML-Notebooks-TensorFlow/blob/main/Intro_Computational_Graphs.ipynb#scrollTo=DxyJDoMOs1gu)**
 
 
-[For more information: Calculus on Computational Graphs: Backpropagation](https://colah.github.io/posts/2015-08-Backprop/)
-
+**[For more information: Calculus on Computational Graphs: Backpropagation](https://colah.github.io/posts/2015-08-Backprop/)**
 
 
