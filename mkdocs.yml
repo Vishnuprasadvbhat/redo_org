@@ -1,0 +1,9 @@
+site_name: Segmentation of Large Language Model
+
+
+theme: 
+  name: material 
+nav: 
+  - Home : index.md
+  - How it helps us : paper.md
+
