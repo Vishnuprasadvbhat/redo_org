@@ -1,4 +1,4 @@
-site_name: Segmentation of Large Language Model
+site_name: Segmentation of Large Language Models
 
 
 theme: 
@@ -6,5 +6,5 @@ theme:
 nav: 
   - Home : index.md
   - How it helps us : paper.md
-  - Our Final Model: Final.md
+  - Our Final Model: final.md
 

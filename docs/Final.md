@@ -11,8 +11,9 @@ The primary focus is to build a single transformer or decoder-only architecture.
 ### **We can construct a GPT architecture using existing sources and frameworks. By leveraging the same frameworks, we can also develop a graph-based LLM.**
 --- 
 
-![LL](https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/parallelism.png)
-source:**[Parellelism](https://aclanthology.org/2024.naacl-industry.1.pdf)**
+![LL](https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/graph_lm.png)
+source:**[mdpi](https://www.mdpi.com/2079-9292/12/4/793)**
+
 
 ## **Graph-to-Graph models**
 
@@ -36,6 +37,8 @@ As a result, GLMs can process graphs, texts, and combined inputs. Empirical eval
 [Graph Language Model](https://aclanthology.org/2024.acl-long.245.pdf)
 
 [Transformers as Graph Model](https://arxiv.org/pdf/2310.17936)
+
+[Optimizing Graph using Swarm](https://arxiv.org/pdf/2402.16823)
 
 
 
