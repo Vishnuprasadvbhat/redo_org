@@ -2,8 +2,6 @@
 
 ## **Current Implementation of Neural Network**
 
-
-
 The current implementation of neural network are based on Dictionaries, List and Queue. Here for efficient training, inferencing and deployment we can make use of Computational graphs. 
 
 
