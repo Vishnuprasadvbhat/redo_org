@@ -11,7 +11,8 @@ The primary focus is to build a single transformer or decoder-only architecture.
 ### **We can construct a GPT architecture using existing sources and frameworks. By leveraging the same frameworks, we can also develop a graph-based LLM.**
 --- 
 
-[]()
+![LL](https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/parallelism.png)
+source:**[Parellelism](https://aclanthology.org/2024.naacl-industry.1.pdf)**
 
 ## **Graph-to-Graph models**
 
@@ -23,7 +24,8 @@ Furthermore, this approach introduces iterative graph refinement, creating a uni
 
 ## **Building a Graph-based LLM**
 
-[]()
+![LL](https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/graphlangmodel.png)
+source:**[Graph Language Model](https://aclanthology.org/2024.acl-long.245.pdf)**
 
 While Language Models (LMs) are essential for Natural Language Processing (NLP), their interaction with structured knowledge graphs (KGs) remains an area of active research. Current methods either linearize KGs for embedding with LMs, which neglects structural information, or utilize Graph Neural Networks (GNNs), which fail to capture text features as effectively as pretrained LMs.
 

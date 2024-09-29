@@ -5,7 +5,7 @@ Segmenting an LLM involves dividing its computational graph into smaller, indepe
 ## **Based on the paper** **[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)**: 
 
 ![LL](https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/linguallinked.png) <br>
-source:[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)
+source:**[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)**
 
 ## **Adoptable Section**
 
@@ -13,16 +13,15 @@ source:[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)
 
 
 ![LL](https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/systemdesign.png)
-source:[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)
+source:**[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)**
 
 
 
 ## **Methods to Segment LLMs Using Computational Graphs**
+<br>
+![LL](https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/parallelism.png)
+source:**[Parellelism](https://aclanthology.org/2024.naacl-industry.1.pdf)**
 
-![LL](https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/systemdesign.png)
-source:[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)
-
-*change it to parallelism
 
 ## 1. **Pipeline Parallelism (Layer-Wise Segmentation)**
 - **Description**: The LLM is segmented by dividing its layers across different devices or nodes.
@@ -115,7 +114,7 @@ source:[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)
   - Nodes that take inputs from a single source and provide outputs to multiple nodes are identified as key points for creating subgraphs.
   - These nodes usually represent distinct layers or operations in the model, making them suitable for independent execution.
 
-### **Subgraph Dependency Search:**
+## **Subgraph Dependency Search:**
 - **Dependency Management**: To manage connections between nodes in different subgraphs, a dependency search algorithm is employed.
 - **Two Key Maps**:
   1. **Residual Dependency Map (RDM)**: 
@@ -125,7 +124,7 @@ source:[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)
      - Monitors direct dependencies between adjacent subgraphs.
      - Ensures outputs from one subgraph are used as inputs for the next subgraph.
 
-### **Model Assignment Optimization:**
+## **Model Assignment Optimization:**
 
 - **Assign Subgraphs to Mobile Devices**: After segmenting LLMs into subgraphs, the next step is to allocate these subgraphs as executable modules on mobile devices.
 - **Consider Device Constraints**: The assignment process takes into account device limitations to minimize computation and data transmission times.
@@ -142,7 +141,7 @@ source:[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)
 
 
 
-### **Key points from the** **[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)**:
+## **Key points from the** **[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)**:
 
 - **Challenge**: Deploying Large Language Models (LLMs) locally on mobile devices is difficult due to high memory requirements.
 
@@ -162,11 +161,9 @@ source:[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)
     - Extensive testing demonstrates that **LinguaLinked** supports efficient LLM inference with consistent throughput and minimal latency across various mobile devices, including both high-end and low-end Android devices.
 
 
-### Reference: 
-
-
-**[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)** <br>
-**[Parellelism](https://aclanthology.org/2024.naacl-industry.1.pdf)**
+## **References** 
+  - **[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)** <br>
+  - **[Parellelism](https://aclanthology.org/2024.naacl-industry.1.pdf)**
 
 
 
