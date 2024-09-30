@@ -1,4 +1,4 @@
-# **Transformer as Graph Model**
+# **Decoder as Graph Model**
 
 **Based on Research Papers** <br>
 
