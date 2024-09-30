@@ -1,5 +1,5 @@
 site_name: Segmentation of Large Language Models
-
+# site_url : https://sitename.pages
 
 theme: 
   name: material 
@@ -8,3 +8,12 @@ nav:
   - How it helps us : paper.md
   - Our Final Model: final.md
 
+
+extra:
+  social:
+    - icon: simple/github
+      link: https://github.com/Vishnuprasadvbhat/redo_org
+    - icon: simple/linkedin
+      link: https://www.linkedin.com/in/vishnuprasadvbhat/
+      
+       
