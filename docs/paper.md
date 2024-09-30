@@ -19,6 +19,7 @@ source:**[LinkedLingual](https://aclanthology.org/2024.acl-demos.16.pdf)**
 
 ## **Methods to Segment LLMs Using Computational Graphs**
 <br>
+
 ![LL](https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/parallelism.png)
 source:**[Parellelism](https://aclanthology.org/2024.naacl-industry.1.pdf)**
 
