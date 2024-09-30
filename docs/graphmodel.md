@@ -36,11 +36,18 @@ This work introduces a new model called the Graph Language Model (GLM), which co
 
 As a result, GLMs can process graphs, texts, and combined inputs. Empirical evaluations in relation classification tasks indicate that GLM embeddings outperform both LM- and GNN-based baselines in supervised and zero-shot settings, demonstrating their versatility.
 
-[Graph Language Model](https://aclanthology.org/2024.acl-long.245.pdf)
+## **Supporting Papers:**
+  - [Graph Language Model](https://aclanthology.org/2024.acl-long.245.pdf)
 
-[Transformers as Graph Model](https://arxiv.org/pdf/2310.17936)
+  - [Transformers as Graph Model](https://arxiv.org/pdf/2310.17936)
 
-[Optimizing Graph using Swarm](https://arxiv.org/pdf/2402.16823)
+  - [Optimizing Graph using Swarm](https://arxiv.org/pdf/2402.16823)
+
+
+## **Reference:**
+  - [Computational Graphs for Neural Networks](https://pharath.github.io/lecture_notes/machine_learning/notes-computational-graphs/)
+  - [Minimal Code](https://github.com/jgsimard/computational_graph)
+  - [Example code](https://github.com/tonegas/PyNet)
 
 
 

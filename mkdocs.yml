@@ -6,10 +6,10 @@ nav:
   - How it helps us: paper.md
   - Our Final Model: graphmodel.md
 
-# extra:
-#   social:
-#     - icon: simple/github
-#       link: https://github.com/Vishnuprasadvbhat/redo_org
-#     - icon: simple/linkedin
-#       link: https://www.linkedin.com/in/vishnuprasadvbhat/
+extra:
+  social:
+    - icon: simple/github
+      link: https://github.com/Vishnuprasadvbhat/redo_org
+    - icon: simple/linkedin
+      link: https://www.linkedin.com/in/vishnuprasadvbhat/
 
