@@ -5,6 +5,7 @@ nav:
   - Home: index.md
   - How it helps us: paper.md
   - Our Final Model: graphmodel.md
+  - The Implementation: implement.md
 
 extra:
   social:
