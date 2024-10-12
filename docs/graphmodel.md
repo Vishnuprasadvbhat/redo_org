@@ -6,7 +6,7 @@
 
 
 
-The primary focus is to build a single transformer or decoder-only architecture. Since our main task is not predicting the next word, we can design an entire system that effectively processes and represents information in a graph format.
+The primary focus is to build a single transformer or decoder-only architecture. Since our main task is predicting the next word, we can design an entire system that effectively processes and represents information in a graph format.
 
 ### **We can construct a GPT architecture using existing sources and frameworks. By leveraging the same frameworks, we can also develop a graph-based LLM.**
 
