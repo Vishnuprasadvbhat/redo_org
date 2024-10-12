@@ -1,0 +1,1078 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../graphmodel/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>How it helps us - Segmentation of Large Language Models</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#segment-the-llm-using-subgraphs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Segmentation of Large Language Models" class="md-header__button md-logo" aria-label="Segmentation of Large Language Models" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Segmentation of Large Language Models
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How it helps us
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Segmentation of Large Language Models" class="md-nav__button md-logo" aria-label="Segmentation of Large Language Models" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Segmentation of Large Language Models
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    How it helps us
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    How it helps us
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#based-on-the-paper-linkedlingual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Based on the paper LinkedLingual:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adoptable-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adoptable Section
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subgraph-extraction-from-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subgraph Extraction from LLMs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods-to-segment-llms-using-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods to Segment LLMs Using Computational Graphs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pipeline-parallelism-layer-wise-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Pipeline Parallelism (Layer-Wise Segmentation)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Pipeline Parallelism (Layer-Wise Segmentation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How it Works:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tensor-parallelism-within-layer-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Tensor Parallelism (Within-Layer Segmentation)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Tensor Parallelism (Within-Layer Segmentation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      How it Works:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenges_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-model-sharding-distributed-across-different-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Model Sharding (Distributed Across Different Devices)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Model Sharding (Distributed Across Different Devices)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      How it Works:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenges_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-task-specific-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Task-Specific Segmentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-graph-partitioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Graph Partitioning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frameworks-and-tools-for-segmenting-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frameworks and Tools for Segmenting LLMs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparation-for-mobile-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation for Mobile Deployment:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subgraph-dependency-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subgraph Dependency Search:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-assignment-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Assignment Optimization:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-points-from-the-linkedlingual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key points from the LinkedLingual:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphmodel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Our Final Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../implement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Implementation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#based-on-the-paper-linkedlingual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Based on the paper LinkedLingual:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adoptable-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adoptable Section
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subgraph-extraction-from-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subgraph Extraction from LLMs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods-to-segment-llms-using-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods to Segment LLMs Using Computational Graphs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pipeline-parallelism-layer-wise-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Pipeline Parallelism (Layer-Wise Segmentation)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Pipeline Parallelism (Layer-Wise Segmentation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How it Works:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tensor-parallelism-within-layer-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Tensor Parallelism (Within-Layer Segmentation)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Tensor Parallelism (Within-Layer Segmentation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      How it Works:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenges_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-model-sharding-distributed-across-different-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Model Sharding (Distributed Across Different Devices)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Model Sharding (Distributed Across Different Devices)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      How it Works:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenges_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-task-specific-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Task-Specific Segmentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-graph-partitioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Graph Partitioning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frameworks-and-tools-for-segmenting-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frameworks and Tools for Segmenting LLMs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparation-for-mobile-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation for Mobile Deployment:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subgraph-dependency-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subgraph Dependency Search:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-assignment-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Assignment Optimization:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-points-from-the-linkedlingual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key points from the LinkedLingual:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="segment-the-llm-using-subgraphs"><strong>Segment the LLM using Subgraphs</strong></h1>
+<p>Segmenting an LLM involves dividing its computational graph into smaller, independent parts, typically to enable parallel execution, distributed inference, or efficient model deployment across different hardware resources. This is useful, especially when working with extremely large models that are too resource-intensive to run on a single device or need optimization for specific deployment scenarios (e.g., edge devices or multi-GPU setups).</p>
+<h2 id="based-on-the-paper-linkedlingual"><strong>Based on the paper</strong> <strong><a href="https://aclanthology.org/2024.acl-demos.16.pdf">LinkedLingual</a></strong>:</h2>
+<p><img alt="LL" src="https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/linguallinked.png" /> <br>
+source:<strong><a href="https://aclanthology.org/2024.acl-demos.16.pdf">LinkedLingual</a></strong></p>
+<h2 id="adoptable-section"><strong>Adoptable Section</strong></h2>
+<h2 id="subgraph-extraction-from-llms"><strong>Subgraph Extraction from LLMs</strong></h2>
+<p><img alt="LL" src="https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/systemdesign.png" />
+source:<strong><a href="https://aclanthology.org/2024.acl-demos.16.pdf">LinkedLingual</a></strong></p>
+<h2 id="methods-to-segment-llms-using-computational-graphs"><strong>Methods to Segment LLMs Using Computational Graphs</strong></h2>
+<p><br></p>
+<p><img alt="LL" src="https://raw.githubusercontent.com/Vishnuprasadvbhat/redo_org/master/img/parallelism.png" />
+source:<strong><a href="https://aclanthology.org/2024.naacl-industry.1.pdf">Parellelism</a></strong></p>
+<h2 id="1-pipeline-parallelism-layer-wise-segmentation">1. <strong>Pipeline Parallelism (Layer-Wise Segmentation)</strong></h2>
+<ul>
+<li><strong>Description</strong>: The LLM is segmented by dividing its layers across different devices or nodes.</li>
+<li><strong>Process</strong>:</li>
+<li>The computational graph is split at the boundaries between layers.</li>
+<li>Each segment is processed sequentially by different hardware components (e.g., GPUs or TPUs).</li>
+<li><strong>Example</strong>: In a transformer model, assign layers 1-6 to GPU 1 and layers 7-12 to GPU 2.</li>
+</ul>
+<h3 id="how-it-works">How it Works:</h3>
+<ul>
+<li>In the forward pass, input data is processed layer-by-layer, with each segment handled by a different device.</li>
+<li>Once one segment finishes, the next device picks up the output from the previous one, like an assembly line.</li>
+<li>In the backward pass, gradients are propagated similarly.</li>
+</ul>
+<h3 id="benefits">Benefits:</h3>
+<ul>
+<li>Reduces memory footprint per device.</li>
+<li>Allows the use of multiple devices in parallel, improving scalability.</li>
+</ul>
+<h3 id="challenges">Challenges:</h3>
+<ul>
+<li>Communication overhead between devices can slow down training or inference.</li>
+<li>Latency due to synchronization between segments.</li>
+</ul>
+<hr />
+<h2 id="2-tensor-parallelism-within-layer-segmentation">2. <strong>Tensor Parallelism (Within-Layer Segmentation)</strong></h2>
+<ul>
+<li><strong>Description</strong>: Tensor parallelism divides the operations within a layer instead of segmenting by layers.</li>
+<li><strong>Process</strong>:</li>
+<li>Large tensors (e.g., weight matrices in self-attention or feedforward layers) are split across multiple devices.</li>
+<li><strong>Example</strong>: For a large matrix multiplication, split the weight matrix into smaller blocks and distribute them across GPUs.</li>
+</ul>
+<h3 id="how-it-works_1">How it Works:</h3>
+<ul>
+<li>Each device performs its portion of the tensor operation simultaneously.</li>
+<li>The partial results from each device are combined at the end of the operation (e.g., using all-reduce operations).</li>
+</ul>
+<h3 id="benefits_1">Benefits:</h3>
+<ul>
+<li>Increases parallelism within each layer, speeding up computation.</li>
+<li>Effective for very large models where a single layer is too large to fit into the memory of a single device.</li>
+</ul>
+<h3 id="challenges_1">Challenges:</h3>
+<ul>
+<li>Synchronization and communication between devices can introduce overhead.</li>
+<li>May require sophisticated partitioning strategies to ensure efficient memory usage and load balancing.</li>
+</ul>
+<hr />
+<h2 id="3-model-sharding-distributed-across-different-devices">3. <strong>Model Sharding (Distributed Across Different Devices)</strong></h2>
+<ul>
+<li><strong>Description</strong>: Different parts of the computational graph are distributed across heterogeneous devices (e.g., CPU, GPU, edge devices).</li>
+<li><strong>Process</strong>:</li>
+<li>Specific segments of the model run on devices optimized for their computation.</li>
+<li><strong>Example</strong>: Run the early layers of a transformer model on a powerful cloud GPU and the later layers on edge devices for faster localized inference.</li>
+</ul>
+<h3 id="how-it-works_2">How it Works:</h3>
+<ul>
+<li>The computational graph is segmented based on device capability, memory, and power requirements.</li>
+<li>Certain segments are offloaded to appropriate hardware (e.g., CPU for lightweight computation, GPU for heavy tensor operations).</li>
+</ul>
+<h3 id="benefits_2">Benefits:</h3>
+<ul>
+<li>Enables the use of edge devices or other constrained hardware in distributed environments.</li>
+<li>Can reduce communication latency if segments are placed close to where data is generated or consumed.</li>
+</ul>
+<h3 id="challenges_2">Challenges:</h3>
+<ul>
+<li>Requires efficient management of communication between heterogeneous devices.</li>
+<li>Segmenting must account for device-specific performance characteristics, such as memory capacity and computation speed.</li>
+</ul>
+<hr />
+<h2 id="4-task-specific-segmentation">4. <strong>Task-Specific Segmentation</strong></h2>
+<ul>
+<li><strong>Description</strong>: LLMs can be segmented based on specific tasks.</li>
+<li><strong>Process</strong>:</li>
+<li>Task-specific layers can be offloaded to different hardware resources while shared layers remain on a central server.</li>
+<li><strong>Use Case</strong>: Particularly useful for multi-task learning or when deploying a model that handles various related tasks.</li>
+</ul>
+<hr />
+<h2 id="5-graph-partitioning">5. <strong>Graph Partitioning</strong></h2>
+<ul>
+<li><strong>Description</strong>: Some deep learning frameworks allow automatic partitioning of computational graphs based on hardware constraints.</li>
+<li><strong>Process</strong>:</li>
+<li>Analyze the computational graph and strategically split it into segments that can be executed independently or in parallel.</li>
+</ul>
+<h2 id="frameworks-and-tools-for-segmenting-llms"><strong>Frameworks and Tools for Segmenting LLMs</strong></h2>
+<ul>
+<li><strong>DeepSpeed (Microsoft)</strong>: Provides tools for pipeline parallelism and tensor parallelism, enabling segmentation of large models across multiple GPUs.</li>
+<li><strong>TensorFlow</strong>: Offers APIs for distributing computation across devices, facilitating segmentation using strategies like model parallelism and data parallelism.</li>
+<li><strong>PyTorch</strong>: The <code>torch.distributed</code> library allows flexible partitioning of the computational graph and distribution across multiple devices.</li>
+<li><strong>Hugging Face Transformers</strong>: The <code>Accelerate</code> library provides tools to split large models across multiple GPUs or TPUs for efficient training and inference.</li>
+<li><strong>ONNX Runtime</strong>: Allows ONNX models to be split into segments and optimized for different hardware, suitable for distributed deployment or model partitioning.</li>
+</ul>
+<hr />
+<h2 id="preparation-for-mobile-deployment"><strong>Preparation for Mobile Deployment:</strong></h2>
+<ul>
+<li><strong>Segment into Subgraphs</strong>: The graphs are divided into smaller, independent subgraphs that can work separately on different devices.</li>
+<li><strong>Key Node Identification</strong>: </li>
+<li>Nodes that take inputs from a single source and provide outputs to multiple nodes are identified as key points for creating subgraphs.</li>
+<li>These nodes usually represent distinct layers or operations in the model, making them suitable for independent execution.</li>
+</ul>
+<h2 id="subgraph-dependency-search"><strong>Subgraph Dependency Search:</strong></h2>
+<ul>
+<li><strong>Dependency Management</strong>: To manage connections between nodes in different subgraphs, a dependency search algorithm is employed.</li>
+<li><strong>Two Key Maps</strong>:</li>
+<li><strong>Residual Dependency Map (RDM)</strong>: <ul>
+<li>Tracks dependencies between non-adjacent subgraphs.</li>
+<li>Identifies when a subgraph relies on nodes from an earlier, but not directly preceding, subgraph.</li>
+</ul>
+</li>
+<li><strong>Sequential Dependency Map (SDM)</strong>:<ul>
+<li>Monitors direct dependencies between adjacent subgraphs.</li>
+<li>Ensures outputs from one subgraph are used as inputs for the next subgraph.</li>
+</ul>
+</li>
+</ul>
+<h2 id="model-assignment-optimization"><strong>Model Assignment Optimization:</strong></h2>
+<ul>
+<li><strong>Assign Subgraphs to Mobile Devices</strong>: After segmenting LLMs into subgraphs, the next step is to allocate these subgraphs as executable modules on mobile devices.</li>
+<li><strong>Consider Device Constraints</strong>: The assignment process takes into account device limitations to minimize computation and data transmission times.</li>
+<li><strong>Profiling and Optimization</strong>:</li>
+<li>Subgraphs are compiled into sub-modules and profiled for:<ul>
+<li>FLOP (Floating Point Operations) count.</li>
+<li>Memory requirements.</li>
+<li>Data output size.</li>
+</ul>
+</li>
+<li>A primary optimizer formulates a linear optimization problem to balance local computation and data transmission.</li>
+<li>Constraints are set to ensure memory usage on each device does not exceed a predetermined limit of the device's available memory.</li>
+</ul>
+<h2 id="key-points-from-the-linkedlingual"><strong>Key points from the</strong> <strong><a href="https://aclanthology.org/2024.acl-demos.16.pdf">LinkedLingual</a></strong>:</h2>
+<ul>
+<li>
+<p><strong>Challenge</strong>: Deploying Large Language Models (LLMs) locally on mobile devices is difficult due to high memory requirements.</p>
+</li>
+<li>
+<p><strong>Solution</strong>: <strong>LinguaLinked</strong> is introduced as a system for decentralized, distributed LLM inference on mobile devices.</p>
+</li>
+<li>
+<p><strong>Data Privacy</strong>: The system processes information locally, ensuring data privacy by preventing data from leaving the device.</p>
+</li>
+<li>
+<p><strong>Key Strategies</strong>:</p>
+</li>
+<li><strong>Optimized Model Assignment</strong>:<ul>
+<li>Segments LLMs and employs linear optimization to align segments with the capabilities of each device.</li>
+</ul>
+</li>
+<li><strong>Optimized Data Transmission</strong>:<ul>
+<li>Ensures efficient and structured data flow between model segments while preserving the integrity of the original model structure.</li>
+</ul>
+</li>
+<li>
+<p><strong>Runtime Load Balancer</strong>:</p>
+<ul>
+<li>Actively monitors and redistributes tasks among mobile devices to prevent bottlenecks, enhancing overall efficiency and responsiveness.</li>
+</ul>
+</li>
+<li>
+<p><strong>Testing Results</strong>:</p>
+<ul>
+<li>Extensive testing demonstrates that <strong>LinguaLinked</strong> supports efficient LLM inference with consistent throughput and minimal latency across various mobile devices, including both high-end and low-end Android devices.</li>
+</ul>
+</li>
+</ul>
+<h2 id="references"><strong>References</strong></h2>
+<ul>
+<li><strong><a href="https://aclanthology.org/2024.acl-demos.16.pdf">LinkedLingual</a></strong> <br></li>
+<li><strong><a href="https://aclanthology.org/2024.naacl-industry.1.pdf">Parellelism</a></strong></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Vishnuprasadvbhat/redo_org" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/vishnuprasadvbhat/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.06 2.06 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065m1.782 13.019H3.555V9h3.564zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>

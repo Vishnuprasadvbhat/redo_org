@@ -1,0 +1,1024 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="paper/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>Segmentation of Large Language Models</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#segmentation-of-the-llms" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Segmentation of Large Language Models" class="md-header__button md-logo" aria-label="Segmentation of Large Language Models" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Segmentation of Large Language Models
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Segmentation of Large Language Models" class="md-nav__button md-logo" aria-label="Segmentation of Large Language Models" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Segmentation of Large Language Models
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#current-implementation-of-neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Implementation of Neural Network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparision-of-anns-to-that-of-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparision of ANNs to that of Computational Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comparision of ANNs to that of Computational Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graph-representation-of-neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph representation of Neural Network:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-are-computational-graphs-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Are Computational Graphs Important?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Computational Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of Computational Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-vs-dynamic-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static vs. Dynamic Computational Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Static vs. Dynamic Computational Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-graphs-define-and-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Graphs (Define-and-Run):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-graphs-define-by-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Graphs (Define-by-Run):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-computational-graph-for-a-simple-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Computational Graph for a Simple Function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corresponding-computational-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Corresponding Computational Graph:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-llms-into-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert LLMs into Computational Graphs:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convert LLMs into Computational Graphs:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breakdown-of-llm-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Breakdown of LLM Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representing-forward-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Representing Forward Pass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backward-pass-backpropagation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backward Pass (Backpropagation)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-llm-layer-single-transformer-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: LLM Layer (Single Transformer Layer)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-concepts-in-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Concepts in Computational Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Concepts in Computational Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nodes:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edges:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directed-acyclic-graph-dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directed Acyclic Graph (DAG):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forward Pass:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backward-pass-backpropagation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backward Pass (Backpropagation):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases-for-llm-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases for LLM Segmentation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="paper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How it helps us
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="graphmodel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Our Final Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="implement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Implementation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#current-implementation-of-neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Implementation of Neural Network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparision-of-anns-to-that-of-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparision of ANNs to that of Computational Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comparision of ANNs to that of Computational Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graph-representation-of-neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph representation of Neural Network:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-are-computational-graphs-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Are Computational Graphs Important?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Computational Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of Computational Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-vs-dynamic-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static vs. Dynamic Computational Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Static vs. Dynamic Computational Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-graphs-define-and-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Graphs (Define-and-Run):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-graphs-define-by-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Graphs (Define-by-Run):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-computational-graph-for-a-simple-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Computational Graph for a Simple Function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corresponding-computational-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Corresponding Computational Graph:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-llms-into-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert LLMs into Computational Graphs:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convert LLMs into Computational Graphs:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breakdown-of-llm-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Breakdown of LLM Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representing-forward-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Representing Forward Pass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backward-pass-backpropagation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backward Pass (Backpropagation)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-llm-layer-single-transformer-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: LLM Layer (Single Transformer Layer)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-concepts-in-computational-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Concepts in Computational Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Concepts in Computational Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nodes:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edges:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directed-acyclic-graph-dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directed Acyclic Graph (DAG):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forward Pass:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backward-pass-backpropagation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backward Pass (Backpropagation):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases-for-llm-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases for LLM Segmentation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="segmentation-of-the-llms"><strong>Segmentation of the llms</strong></h1>
+<p>After our last meeting, we found that we were all working hard on developing a suitable model for edge deployment using various state-of-the-art methods such as pruning, fine-tuning, quantizing, and distillation. However, the segmentation of LLMs was still an area that we had not explored.</p>
+<p>Furthermore, we discussed an existing method that could be incorporated into our research project for efficiently segmenting the LLM. The points I have expressed here are based on the research paper I have explored, but there may be other methods that outperform the proposed one.</p>
+<h2 id="current-implementation-of-neural-network"><strong>Current Implementation of Neural Network</strong></h2>
+<p>The current implementation of neural network are based on Dictionaries, List and Queue. Here for efficient training, inferencing and deployment we can make use of Computational graphs. 
+<br></p>
+<p><img alt="Basic ANN" src="https://cdn-images-1.medium.com/max/1600/1*pbk9xtz7WbBwYPVATdl9Vw.png" /></p>
+<p>We are going to replace the mathematical operations used in our neural network to the Node</p>
+<h2 id="comparision-of-anns-to-that-of-computational-graphs"><strong>Comparision of ANNs to that of Computational Graphs</strong></h2>
+<h3 id="graph-representation-of-neural-network"><strong>Graph representation of Neural Network:</strong></h3>
+<p>Computational graphs are a fundamental concept in machine learning and deep learning, representing the sequence of operations needed to compute a mathematical function. They provide a structured way to visualize and manage how data flows through various operations, enabling efficient computation and optimization, particularly for automatic differentiation (used in backpropagation).</p>
+<p><img alt="Graph representation of Neural Network" src="https://res.cloudinary.com/dyd911kmh/image/upload/v1658404111/neural_network_graph_f8afb378d4.png" /></p>
+<hr />
+<h2 id="why-are-computational-graphs-important"><strong>Why Are Computational Graphs Important?</strong></h2>
+<ol>
+<li><strong>Automatic Differentiation:</strong>
+The graph structure allows for efficient computation of gradients during backpropagation by systematically applying the chain rule.</li>
+<li><strong>Modularity:</strong>
+Complex functions can be broken down into simpler operations, which can be reused and recomposed.</li>
+<li><strong>Parallelization:</strong>
+Since the graph structure outlines dependencies, parts of the computation that are independent can be parallelized, improving efficiency on GPUs or distributed systems.</li>
+<li><strong>Optimization:</strong>
+Frameworks like TensorFlow and PyTorch build computational graphs dynamically or statically, allowing for optimizations like memory management and operation fusion.</li>
+</ol>
+<h2 id="types-of-computational-graphs"><strong>Types of Computational Graphs</strong></h2>
+<h3 id="static-vs-dynamic-computational-graphs"><strong>Static vs. Dynamic Computational Graphs</strong></h3>
+<h4 id="static-graphs-define-and-run"><strong>Static Graphs (Define-and-Run):</strong></h4>
+<p>The graph is defined once before execution (e.g., TensorFlow 1.x). Once the graph is constructed, it is executed as a whole.</p>
+<p><strong>Pros:</strong> Allows for optimizations like memory reuse and graph-level optimizations. <br>
+<strong>Cons:</strong> Less flexible, requires redefinition of the graph for dynamic changes.</p>
+<h4 id="dynamic-graphs-define-by-run"><strong>Dynamic Graphs (Define-by-Run):</strong></h4>
+<p>The graph is constructed on-the-fly as operations are executed (e.g., PyTorch, TensorFlow 2.x).</p>
+<p><strong>Pros:</strong> More flexible and intuitive, especially useful for tasks like recursive neural networks or variable-length sequences. <br>
+<strong>Cons:</strong> Can have slightly higher overhead during execution due to graph construction.
+vbnet</p>
+<h3 id="example-computational-graph-for-a-simple-function"><strong>Example: Computational Graph for a Simple Function</strong></h3>
+<p><img alt="Functional representation of Computational Graphs" src="https://sslprod.oss-cn-shanghai.aliyuncs.com/stable/slides/computational_graph_backpropagation_jij68v/computational_graph_backpropagation_jij68v_1440-05.jpg" /></p>
+<p>**Suppose we have a simple function: ** 
+ - [ z = (x + y) \cdot w ]</p>
+<p><strong>Where:</strong><br />
+- ( x ), ( y ), and ( w ) are input variables.<br />
+- ( + ) and ( \cdot ) are operations.</p>
+<h3 id="corresponding-computational-graph"><strong>Corresponding Computational Graph</strong>:</h3>
+<pre><code class="language-text">x ----+
+      |
+      +----( + )----&gt; z
+      |            |
+y ----+            * 
+                   |
+w -----------------+
+
+</code></pre>
+<h2 id="convert-llms-into-computational-graphs"><strong>Convert LLMs into Computational Graphs</strong>: <br></h2>
+<!-- ## **Steps to Convert LLMs into Computational Graphs** <br> -->
+
+<h4 id="breakdown-of-llm-components"><strong>Breakdown of LLM Components <br></strong></h4>
+<ul>
+<li><strong>Overview</strong>: LLMs, such as GPT, are essentially stacks of transformer layers.</li>
+<li><strong>Each transformer layer contains operations like</strong>:<ul>
+<li>Linear projections (matrix multiplications)</li>
+<li>Multi-head self-attention (dot products, softmax, and weighted sums)</li>
+<li>Layer normalization</li>
+<li>Activation functions (e.g., GeLU, ReLU)</li>
+<li>Feedforward neural networks</li>
+</ul>
+</li>
+<li><strong>Representation</strong>: These operations can be represented as nodes in a computational graph.</li>
+</ul>
+<hr />
+<h4 id="representing-forward-pass">Representing Forward Pass <br></h4>
+<ul>
+<li><strong>Process</strong>: In the forward pass, the input tokens (word embeddings) are passed through a series of transformer layers.</li>
+<li><strong>Node Representation</strong>:<ul>
+<li>Each layer's operations can be converted into a node in the graph.</li>
+<li>The output of one node (operation) flows into the next.</li>
+</ul>
+</li>
+<li><strong>Self-Attention Mechanism</strong>:<ul>
+<li>The self-attention mechanism itself is a subgraph.</li>
+<li>Each step (e.g., attention scores calculation, softmax normalization) is broken down into individual operations.</li>
+</ul>
+</li>
+<li><strong>Graph Interaction</strong>: The computational graph represents how each token interacts with others across layers.</li>
+</ul>
+<hr />
+<h4 id="backward-pass-backpropagation"><strong>Backward Pass (Backpropagation)</strong></h4>
+<ul>
+<li><strong>Automatic Differentiation</strong>: The backward pass is handled by automatic differentiation.</li>
+<li><strong>Gradient Computation</strong>:<ul>
+<li>Once the computational graph is constructed, frameworks like TensorFlow or PyTorch can automatically compute gradients for each parameter with respect to the loss.</li>
+<li>This is done by traversing the graph in reverse.</li>
+</ul>
+</li>
+<li><strong>Efficiency</strong>: This allows for efficient training of the model, optimizing the parameters using gradient descent.</li>
+</ul>
+<hr />
+<h4 id="example-llm-layer-single-transformer-layer">Example: LLM Layer (Single Transformer Layer)</h4>
+<ul>
+<li><strong>Inputs</strong>: Token embeddings</li>
+<li><strong>Operations</strong>:<ul>
+<li>Multi-head self-attention (with matrix multiplications, scaling, and softmax)</li>
+<li>Add &amp; Norm</li>
+<li>Feedforward network (with activation function)</li>
+<li>Add &amp; Norm</li>
+</ul>
+</li>
+<li><strong>Outputs</strong>: Transformed embeddings</li>
+<li><strong>Graph Representation</strong>: This can be represented as a directed acyclic graph (DAG), with each of these operations represented as nodes and the data flow between them as edges.</li>
+</ul>
+<h2 id="key-concepts-in-computational-graphs"><strong>Key Concepts in Computational Graphs</strong></h2>
+<h3 id="nodes"><strong>Nodes:</strong></h3>
+<ul>
+<li>Each node in a computational graph represents a mathematical operation (e.g., addition, multiplication, activation functions) or a variable (e.g., input data, weights, biases).</li>
+<li>Input nodes hold the input data, and operation nodes perform functions on the data.</li>
+</ul>
+<h3 id="edges"><strong>Edges:</strong></h3>
+<ul>
+<li>The edges represent the flow of data between operations. They carry values (or tensors) that are passed from one operation to another.</li>
+<li>Edges define dependencies between nodes, ensuring that operations are computed in the correct order.</li>
+</ul>
+<h3 id="directed-acyclic-graph-dag"><strong>Directed Acyclic Graph (DAG):</strong></h3>
+<ul>
+<li>Computational graphs are typically directed acyclic graphs (DAGs), meaning that data flows in one direction, and there are no cycles or loops in the graph.</li>
+<li>This ensures that the computation proceeds from inputs to outputs without infinite recursion.</li>
+</ul>
+<h3 id="forward-pass"><strong>Forward Pass:</strong></h3>
+<ul>
+<li>During the forward pass, data flows through the graph from the input nodes, through the operations, and produces an output.</li>
+<li>This step calculates the predicted output based on the input data and model parameters.</li>
+</ul>
+<h3 id="backward-pass-backpropagation_1"><strong>Backward Pass (Backpropagation):</strong></h3>
+<ul>
+<li>During the backward pass, the graph is used to calculate gradients of the loss function with respect to model parameters.</li>
+<li>Automatic differentiation (reverse-mode differentiation) is applied by traversing the graph backward, allowing efficient gradient calculation for optimization algorithms like gradient descent.</li>
+</ul>
+<h2 id="use-cases-for-llm-segmentation"><strong>Use Cases for LLM Segmentation</strong></h2>
+<ul>
+<li><strong>Distributed Training</strong>: Essential for efficiently training very large LLMs (like GPT-3 or similar models) across multiple GPUs or nodes.</li>
+<li><strong>Edge Deployment</strong>: Allows parts of the model to be deployed on edge devices while keeping others centralized.</li>
+<li><strong>Inference Pipelines</strong>: Facilitates faster, parallelized processing for real-time applications by segmenting the LLM.</li>
+</ul>
+<p><strong><a href="https://colab.research.google.com/github/datasith/ML-Notebooks-TensorFlow/blob/main/Intro_Computational_Graphs.ipynb#scrollTo=DxyJDoMOs1gu">Basic Implementation in Colab - On Mathematic Expressions</a></strong></p>
+<p><strong><a href="https://colah.github.io/posts/2015-08-Backprop/">For more information: Calculus on Computational Graphs: Backpropagation</a></strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Vishnuprasadvbhat/redo_org" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/vishnuprasadvbhat/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.06 2.06 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065m1.782 13.019H3.555V9h3.564zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>
